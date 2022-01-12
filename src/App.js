@@ -20,8 +20,15 @@ function App() {
       name: values.name,
       cost: values.cost,
       category: values.category
-    }).then((response) => {
-      console.log(response);
+    }).then(() => {
+      setListGames([
+        ...listGames,
+        {
+          name: values.name,
+          cost: values.cost,
+          category: values.category
+        }
+      ])
     })
   }
 
@@ -64,10 +71,17 @@ function App() {
 
       </div>
 
-      {typeof listGames !== "undefined" && 
-      listGames.map((value) => {
-        return <Card />
-      })}
+      {typeof listGames !== "undefined" &&
+        listGames.map((value) => {
+          return <Card key={value.id}
+            listCard={listGames}
+            setListCard={setListGames}
+            id={value.idgames}
+            name={value.name}
+            category={value.category}
+            cost={value.cost}
+          />
+        })}
 
     </div>
   );
